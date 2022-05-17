@@ -14,9 +14,14 @@ output:
     hosts: {{ filebeat_output_elasticsearch_hosts | to_json }}
 
     # Optional protocol and basic auth credentials. These are deprecated.
-    #protocol: "https"
-    #username: "admin"
-    #password: "s3cr3t"
+    protocol: "https"
+    username: {{ filebeat_output_elasticsearch_username }}
+    password: {{ filebeat_output_elasticsearch_password }}
+
+output.elasticsearch.index: "{{inventory_hostname}}-%{+yyyy.MM.dd}"
+setup.template.name: "{{inventory_hostname}}"
+setup.template.pattern: "{{inventory_hostname}}-%{+yyyy.MM.dd}"
+
 
     # Number of workers per Elasticsearch host.
     #worker: 1

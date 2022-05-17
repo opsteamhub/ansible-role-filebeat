@@ -1,0 +1,49 @@
+---
+- name: Ensure required dependencies are present.
+  apt:
+    name:
+      - apt-transport-https
+      - gnupg2
+      - curl
+    state: present
+
+- name: Download filebeat {{ filebeat_version }}
+  get_url:
+    url: https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-{{ filebeat_version }}-amd64.deb
+    dest: /opt/
+    mode: '0440'
+
+- name: Install Filebeat
+  command: dpkg -i /opt/filebeat-{{ filebeat_version }}-amd64.deb 
+
+- name: Enable module system
+  command: filebeat modules enable system
+  ignore_errors: True
+
+
+#- name: Add Elasticsearch apt key.
+#  apt_key:
+#    url: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+#    id: 46095ACC8548582C1A2699A9D27D666CD88E42B4
+#    state: present
+#
+#- name: Add Filebeat repository.
+#  apt_repository:
+#    repo: 'deb https://artifacts.elastic.co/packages/{{ filebeat_version }}/apt stable main'
+#    state: present
+#    update_cache: true
+#
+#
+#
+#
+#- name: Download filebeat 8.1.2
+#  get_url:
+#    url: https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-8.1.2-amd64.deb
+#    dest: /opt/
+#    mode: '0440'
+#
+#- name: Install Filebeat
+#  command: sudo dpkg -i filebeat-8.1.2-amd64.deb 
+#
+#- name: Enable module system
+#  command: filebeat modules enable system
