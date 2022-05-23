@@ -6,7 +6,7 @@
     mode: '0440'
 
 - name: Install Filebeat
-  command: rpm -vi filebeat-oss-{{ filebeat_version }}-x86_64.rpm
+  command: rpm -vi /opt/filebeat-oss-{{ filebeat_version }}-x86_64.rpm
 
 - name: Enable module system
   command: filebeat modules enable system
