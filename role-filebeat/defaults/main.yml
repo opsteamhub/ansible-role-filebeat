@@ -38,3 +38,4 @@ filebeat_elastic_cloud_password: ""
 
 #filebeat_output_elasticsearch_index: 
 
+kibana_index_name:

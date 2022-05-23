@@ -18,9 +18,9 @@ output:
     username: {{ filebeat_output_elasticsearch_username }}
     password: {{ filebeat_output_elasticsearch_password }}
 
-output.elasticsearch.index: "{{inventory_hostname}}-%{+yyyy.MM.dd}"
-setup.template.name: "{{inventory_hostname}}"
-setup.template.pattern: "{{inventory_hostname}}-%{+yyyy.MM.dd}"
+output.elasticsearch.index: "{{kibana_index_name}}-%{+yyyy.MM.dd}"
+setup.template.name: "{{kibana_index_name}}"
+setup.template.pattern: "{{kibana_index_name}}-%{+yyyy.MM.dd}"
 
 
     # Number of workers per Elasticsearch host.
